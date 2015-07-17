@@ -1,37 +1,51 @@
-// Cycles through all possible combinations of RGB based on a sine wave per color
-
 // Pin locations
 #define rPin 11
 #define gPin 10
 #define bPin 9
 
 // Initialize vars
-int R,G,B,x;
+int r,g,b,x;
 
-// Brightness from 1 to 255
-int l = 255;
+// Intensity from 1 to 255
+float i = 255;
 
-// Speed of cycle
-int s = 10;
- 
+// Speed in ms
+int s = 1000;
+
 void setup(void) {
-  l=(l/2);
+  s=s/i;
+  i=(i/2);
 }
 
 // Main function loop
 void loop(void) {
   x++;
-  if(x > (l*4)*PI/2){
+
+  int wave1 = i*sin(x/i+PI/2)+i;
+  int wave2 = -i*sin(x/i+PI/2)+i;
+  
+  if(x < i*PI) {
+    r = wave1;
+    g = 0;
+    b = wave2;
+  }
+  else if(x < i*2*PI) {
+    r = 0;
+    g = wave1;
+    b = wave2;
+  }
+  else if(x < i*3*PI) {
+    r = wave2;
+    g = wave1;
+    b = 0;
+  }
+  else {
     x=0;
   }
   
-  R = l*sin(x/127.5)+l;
-  G = l*sin(x/127.5+(2*PI/3))+l;
-  B = l*sin(x/127.5+(4*PI/3))+l;
-  
-  analogWrite(rPin, R);
-  analogWrite(gPin, G);
-  analogWrite(bPin, B);
+  analogWrite(rPin, r);
+  analogWrite(gPin, g);
+  analogWrite(bPin, b);
 
   delay(s);
 }
