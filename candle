@@ -11,8 +11,8 @@ void setup(void) {
 
 // Main function loop
 void loop() {
-  i=150+random(105); // Minimum brightness is 150, then add a random brightness level
-  d = random(10); // Random delay between brightness levels
+  i = 127+random(128); // Minimum brightness plus a random number, combined 255
+  d = 2+random(8); // Random delay between brightness levels
 
   // Instead of just setting a value per loop, this smoothly incriments
   // between brightness levels for a more organic look
