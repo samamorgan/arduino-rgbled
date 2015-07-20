@@ -89,18 +89,5 @@ void loop(void) {
   analogWrite(gPin, G);
   analogWrite(bPin, B);
 
-/*
-  Serial.print("Temperature, LED Value, RGB: ");
-  Serial.print(temp);
-  Serial.print(", ");
-  Serial.print(val);
-  Serial.print(", (");
-  Serial.print(R);
-  Serial.print(", ");
-  Serial.print(G);
-  Serial.print(", ");
-  Serial.print(B);
-  Serial.println(")");
-*/
   delay(10); //LED delay
 }
